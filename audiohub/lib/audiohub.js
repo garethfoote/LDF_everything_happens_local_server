@@ -40,6 +40,7 @@ class Audiohub extends EventEmitter {
 
     const completeHandler = () => {
       // console.log('Complete', this.playback.spawnargs[1])
+      // console.log(this.playback)
       this.playback.off('close', completeHandler)
       this.emit('complete', file)
     }
