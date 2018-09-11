@@ -19,7 +19,10 @@ const io = require('socket.io')(server, {
 })
 
 const socketRx = (msg) => {
-  // console.log('EVENT: '+msg)
+  console.log('\nEVENT: ' + msg)
+  if(config.audio === false){
+    return
+  }
   if(msg === 'start'){
     sound.setState(sound.States.USER_ENGAGED)
   } else if(msg === 'stop'){
@@ -39,8 +42,10 @@ io.on('error', (socket) => {
   console.log("io not connected")
 })
 
-sound.init(7000, 4000, 7/10)
-sound.play()
+if(config.audio === true){
+  sound.init(7000, 4000, 7/10)
+  sound.play()
+}
 server.listen(3001)
 console.log("listening on 3001")
 
