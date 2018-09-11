@@ -27,7 +27,7 @@ const socketRx = (msg) => {
   }
 }
 const socketRxDebounced = Utils.debounced(500, socketRx)
-const visitsListenerDebounced = Utils.throttle(500, ard.write.bind(ard))
+const visitsListenerDebounced = Utils.throttle(100, ard.write.bind(ard))
 
 io.on('connection', (socket) => {
   console.log('connection', socket.id)
